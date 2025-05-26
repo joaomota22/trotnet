@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import bcrypt from "bcryptjs";
-import Navbar from "@/components/Navbar";
-import Cores from "@/components/Cores";
 import BasePage from "@/components/BasePage";
 
 export default function RegisterPage() {

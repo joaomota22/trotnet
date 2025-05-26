@@ -1,11 +1,8 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Cores from "@/components/Cores";
 import React, { useState, useRef, useEffect } from "react";
 import BasePage from "@/components/BasePage";
 
-// Utilitário para converter arquivo em base64
 function toBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -39,7 +36,6 @@ export default function Chat() {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    // Mostra a imagem no chat
     const base64 = await toBase64(file);
     setMessages((prev) => [
       ...prev,
@@ -48,7 +44,6 @@ export default function Chat() {
     ]);
     setLoading(true);
 
-    // Envia para a API
     try {
       const res = await fetch("/api/generateCode", {
         method: "POST",
@@ -58,7 +53,6 @@ export default function Chat() {
       const data = await res.json();
 
       setMessages((prev) => {
-        // Remove o último loading
         const filtered = prev.filter((msg) => msg.type !== "loading");
         if (res.ok && data.result) {
           return [...filtered, { type: "code", content: data.result }];
@@ -79,7 +73,6 @@ export default function Chat() {
       });
     } finally {
       setLoading(false);
-      // Limpa o input para permitir novo upload do mesmo arquivo
       if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
@@ -151,7 +144,6 @@ export default function Chat() {
                   </div>
                 );
               }
-              // code
               return (
                 <div
                   key={index}

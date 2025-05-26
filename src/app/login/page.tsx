@@ -1,8 +1,6 @@
 "use client";
 
 import BasePage from "@/components/BasePage";
-import Cores from "@/components/Cores";
-import Navbar from "@/components/Navbar";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

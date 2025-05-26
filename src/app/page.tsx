@@ -1,8 +1,6 @@
 "use client";
 
 import BasePage from "@/components/BasePage";
-import Cores from "@/components/Cores";
-import Navbar from "@/components/Navbar";
 import { useSession } from "next-auth/react";
 
 export default function Home() {

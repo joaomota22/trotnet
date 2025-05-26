@@ -1,6 +1,4 @@
-import Navbar from "@/components/Navbar";
 import FAQuestion from "@/components/FAQuestion";
-import Cores from "@/components/Cores";
 import BasePage from "@/components/BasePage";
 
 export default function Faq() {
