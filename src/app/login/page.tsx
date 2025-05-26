@@ -4,6 +4,7 @@ import BasePage from "@/components/BasePage";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import "./styles.css";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -143,24 +144,6 @@ export default function LoginPage() {
           </form>
         </div>
       </div>
-      <style>{`
-    .animate-fade-in {
-      animation: fadeIn 0.8s cubic-bezier(.4,0,.2,1);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .animate-shake {
-      animation: shake 0.3s;
-    }
-    @keyframes shake {
-      10%, 90% { transform: translateX(-2px);}
-      20%, 80% { transform: translateX(4px);}
-      30%, 50%, 70% { transform: translateX(-8px);}
-      40%, 60% { transform: translateX(8px);}
-    }
-  `}</style>
     </BasePage>
   );
 }

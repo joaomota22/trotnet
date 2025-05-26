@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import BasePage from "@/components/BasePage";
+import "./styles.css";
 
 function toBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -79,7 +80,7 @@ export default function Chat() {
 
   return (
     <BasePage>
-      <div className="flex flex-1 items-center justify-center py-8 px-2 sm:px-4">
+      <div className="min-h-screen flex flex-1 items-center justify-center py-8 px-2 sm:px-4">
         <div className="w-full max-w-lg sm:max-w-3xl flex flex-col h-[80vh] bg-white/90 dark:bg-black/80 border border-black/10 dark:border-white/10 shadow-lg rounded-3xl backdrop-blur-xl animate-fade-in">
           <div className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-4 custom-scrollbar">
             {messages.length === 0 && (
@@ -186,27 +187,6 @@ export default function Chat() {
           </div>
         </div>
       </div>
-      <style>{`
-      .animate-fade-in {
-        animation: fadeIn 0.8s cubic-bezier(.4,0,.2,1);
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(30px);}
-        to { opacity: 1; transform: translateY(0);}
-      }
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 8px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: var(--tw-prose-invert) !important;
-        border-radius: 8px;
-      }
-      @media (max-width: 640px) {
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
-        }
-      }
-    `}</style>
     </BasePage>
   );
 }

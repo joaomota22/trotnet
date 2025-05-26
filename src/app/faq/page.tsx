@@ -1,10 +1,11 @@
 import FAQuestion from "@/components/FAQuestion";
 import BasePage from "@/components/BasePage";
+import "./styles.css";
 
 export default function Faq() {
   return (
     <BasePage>
-      <div className="flex flex-1 flex-col items-center justify-center px-2 sm:px-4 pt-12 sm:pt-20 z-10 w-full">
+      <div className="min-h-screen flex flex-1 flex-col items-center justify-center px-2 sm:px-4 pt-12 sm:pt-20 z-10 w-full">
         <section className="w-full max-w-xs sm:max-w-lg md:max-w-2xl flex flex-col items-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-black dark:text-white text-center mb-4 sm:mb-8 tracking-tight drop-shadow-lg">
             Perguntas Frequentes
@@ -31,15 +32,6 @@ export default function Faq() {
           </div>
         </section>
       </div>
-      <style>{`
-      .animate-fade-in {
-        animation: fadeIn 0.8s cubic-bezier(.4,0,.2,1);
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(30px);}
-        to { opacity: 1; transform: translateY(0);}
-      }
-    `}</style>
     </BasePage>
   );
 }
