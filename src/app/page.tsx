@@ -1,5 +1,6 @@
 "use client";
 
+import BasePage from "@/components/BasePage";
 import Cores from "@/components/Cores";
 import Navbar from "@/components/Navbar";
 import { useSession } from "next-auth/react";
@@ -8,10 +9,8 @@ export default function Home() {
   const { data: session } = useSession();
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black flex flex-col relative overflow-hidden transition-colors">
-      <Cores />
-      <Navbar />
-      <main className="flex flex-1 flex-col items-center justify-center px-2 sm:px-4 pt-16 sm:pt-24 z-10 w-full">
+    <BasePage>
+      <div className="flex flex-1 flex-col items-center justify-center px-2 sm:px-4 pt-16 sm:pt-24 z-10 w-full">
         <section className="w-full max-w-lg sm:max-w-3xl flex flex-col items-center">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-black dark:text-white text-center mb-4 sm:mb-6 tracking-tight drop-shadow-lg">
             Trotnet
@@ -37,8 +36,7 @@ export default function Home() {
             </a>
           </div>
         </section>
-      </main>
-      <footer className="w-full flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 py-4 bg-black/10 dark:bg-black/80 border-t border-black/10 dark:border-white/10 z-20 text-xs sm:text-base text-black dark:text-white transition-colors"></footer>
-    </div>
+      </div>
+    </BasePage>
   );
 }

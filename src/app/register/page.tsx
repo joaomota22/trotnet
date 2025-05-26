@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import bcrypt from "bcryptjs";
 import Navbar from "@/components/Navbar";
 import Cores from "@/components/Cores";
+import BasePage from "@/components/BasePage";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -38,12 +39,13 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black flex flex-col relative overflow-hidden transition-colors">
-      <Cores />
-      <Navbar />
-      <div className="flex flex-1 items-center justify-center px-2 sm:px-4">
+    <BasePage>
+      <div className="min-h-screen flex flex-1 items-center justify-center px-2 sm:px-4">
         <div className="w-full max-w-md shadow-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-xl animate-fade-in z-10 rounded-2xl">
-          <form onSubmit={handleSubmit} className="card-body space-y-4 p-4 sm:p-8 md:p-10">
+          <form
+            onSubmit={handleSubmit}
+            className="card-body space-y-4 p-4 sm:p-8 md:p-10"
+          >
             <div className="flex flex-col items-center mb-2">
               <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-black dark:text-white tracking-tight drop-shadow-lg">
                 Crie sua conta
@@ -172,24 +174,24 @@ export default function RegisterPage() {
           </form>
         </div>
         <style>{`
-        .animate-fade-in {
-          animation: fadeIn 0.8s cubic-bezier(.4,0,.2,1);
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(30px);}
-          to { opacity: 1; transform: translateY(0);}
-        }
-        .animate-shake {
-          animation: shake 0.3s;
-        }
-        @keyframes shake {
-          10%, 90% { transform: translateX(-2px);}
-          20%, 80% { transform: translateX(4px);}
-          30%, 50%, 70% { transform: translateX(-8px);}
-          40%, 60% { transform: translateX(8px);}
-        }
-      `}</style>
+      .animate-fade-in {
+        animation: fadeIn 0.8s cubic-bezier(.4,0,.2,1);
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px);}
+        to { opacity: 1; transform: translateY(0);}
+      }
+      .animate-shake {
+        animation: shake 0.3s;
+      }
+      @keyframes shake {
+        10%, 90% { transform: translateX(-2px);}
+        20%, 80% { transform: translateX(4px);}
+        30%, 50%, 70% { transform: translateX(-8px);}
+        40%, 60% { transform: translateX(8px);}
+      }
+    `}</style>
       </div>
-    </div>
+    </BasePage>
   );
 }

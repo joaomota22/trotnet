@@ -1,13 +1,12 @@
 import Navbar from "@/components/Navbar";
 import FAQuestion from "@/components/FAQuestion";
 import Cores from "@/components/Cores";
+import BasePage from "@/components/BasePage";
 
 export default function Faq() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black flex flex-col relative overflow-hidden transition-colors">
-      <Cores />
-      <Navbar />
-      <main className="flex flex-1 flex-col items-center justify-center px-2 sm:px-4 pt-12 sm:pt-20 z-10 w-full">
+    <BasePage>
+      <div className="flex flex-1 flex-col items-center justify-center px-2 sm:px-4 pt-12 sm:pt-20 z-10 w-full">
         <section className="w-full max-w-xs sm:max-w-lg md:max-w-2xl flex flex-col items-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-black dark:text-white text-center mb-4 sm:mb-8 tracking-tight drop-shadow-lg">
             Perguntas Frequentes
@@ -33,17 +32,16 @@ export default function Faq() {
             </div>
           </div>
         </section>
-      </main>
-      <footer className="w-full flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 py-4 bg-black/10 dark:bg-black/80 border-t border-black/10 dark:border-white/10 z-20 text-xs sm:text-base text-black dark:text-white transition-colors"></footer>
+      </div>
       <style>{`
-        .animate-fade-in {
-          animation: fadeIn 0.8s cubic-bezier(.4,0,.2,1);
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(30px);}
-          to { opacity: 1; transform: translateY(0);}
-        }
-      `}</style>
-    </div>
+      .animate-fade-in {
+        animation: fadeIn 0.8s cubic-bezier(.4,0,.2,1);
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px);}
+        to { opacity: 1; transform: translateY(0);}
+      }
+    `}</style>
+    </BasePage>
   );
 }
