@@ -44,4 +44,8 @@ export async function POST(/*req: Request*/) {
   //     { status: 500, headers: { "Content-Type": "application/json" } }
   //   );
   // }
+  return new Response(JSON.stringify({ result: "" }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
 }
