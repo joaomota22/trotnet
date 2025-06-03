@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import BasePage from "@/components/BasePage";
 import "./styles.css";
+import Image from "next/image";
 
 function toBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -22,7 +23,7 @@ type Message =
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -64,7 +65,7 @@ export default function Chat() {
           ];
         }
       });
-    } catch (err) {
+    } catch {
       setMessages((prev) => {
         const filtered = prev.filter((msg) => msg.type !== "loading");
         return [
@@ -98,7 +99,7 @@ export default function Chat() {
                     key={index}
                     className="max-w-[85vw] sm:max-w-[70%] px-4 py-3 sm:px-6 sm:py-4 rounded-2xl shadow flex flex-col text-base md:text-lg font-normal transition-colors duration-200 border bg-black/10 dark:bg-white/10 text-black dark:text-white self-start rounded-bl-3xl border-black/20 dark:border-white/20"
                   >
-                    <img
+                    <Image
                       src={message.content}
                       alt="uploaded"
                       className="max-w-[60vw] sm:max-w-xs h-auto rounded-xl border border-black/10 dark:border-white/20"
