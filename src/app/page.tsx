@@ -26,6 +26,7 @@ export default function Home() {
             >
               {session ? "Ir para o Chat" : "Comece agora"}
             </a>
+            
             <a
               href="/faq"
               className="w-full sm:w-auto px-6 sm:px-8 py-3 rounded-full bg-black/10 dark:bg-white/10 border border-black/20 dark:border-white/20 text-black dark:text-white font-semibold text-base sm:text-lg shadow hover:bg-black/20 dark:hover:bg-white/20 transition text-center"
