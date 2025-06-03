@@ -7,7 +7,7 @@
 
 // export const runtime = "edge";
 
-export async function POST(req: Request) {
+export async function POST(/*req: Request*/) {
   // try {
   //   const { url, img } = await req.json();
   //   const imageUrl = url ?? img;
