@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import BasePage from "@/components/BasePage";
 import "./styles.css";
-import Image from "next/image";
 
 function toBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -81,9 +80,9 @@ export default function Chat() {
 
   return (
     <BasePage>
-      <div className="min-h-screen flex flex-1 items-center justify-center py-8 px-2 sm:px-4">
-        <div className="w-full max-w-lg sm:max-w-3xl flex flex-col h-[80vh] bg-white/90 dark:bg-black/80 border border-black/10 dark:border-white/10 shadow-lg rounded-3xl backdrop-blur-xl animate-fade-in">
-          <div className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-4 custom-scrollbar">
+      <div className="min-h-screen flex flex-col py-8 px-2 sm:px-4">
+        <div className="w-full py-12 my-20 max-w-lg sm:max-w-3xl mx-auto flex flex-col h-[80vh] bg-white/90 dark:bg-black/80 border border-black/10 dark:border-white/10 shadow-lg rounded-3xl backdrop-blur-xl animate-fade-in">
+          <div className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-8 space-y-4 custom-scrollbar">
             {messages.length === 0 && (
               <div className="flex flex-col items-center justify-center h-full text-base-content/60 select-none">
                 <span className="text-3xl mb-2">🖼️</span>
@@ -99,7 +98,7 @@ export default function Chat() {
                     key={index}
                     className="max-w-[85vw] sm:max-w-[70%] px-4 py-3 sm:px-6 sm:py-4 rounded-2xl shadow flex flex-col text-base md:text-lg font-normal transition-colors duration-200 border bg-black/10 dark:bg-white/10 text-black dark:text-white self-start rounded-bl-3xl border-black/20 dark:border-white/20"
                   >
-                    <Image
+                    <img
                       src={message.content}
                       alt="uploaded"
                       className="max-w-[60vw] sm:max-w-xs h-auto rounded-xl border border-black/10 dark:border-white/20"
@@ -149,7 +148,11 @@ export default function Chat() {
               return (
                 <div
                   key={index}
-                  className="max-w-[85vw] sm:max-w-[70%] px-4 py-3 sm:px-6 sm:py-4 rounded-2xl shadow flex flex-col text-xs sm:text-sm font-mono transition-colors duration-200 border bg-black dark:bg-white text-white dark:text-black self-end rounded-br-3xl border-black/10 dark:border-white/10"
+                  className="max-w-[85vw] sm:max-w-[70%] px-4 py-3 sm:px-6 sm:py-4 rounded-2xl shadow flex flex-col text-xs sm:text-sm font-mono transition-colors duration-200 border bg-black dark:bg-white text-white dark:text-black self-end rounded-br-3xl border-black/10 dark:border-white/10 cursor-pointer select-text"
+                  title="Clique para copiar"
+                  onClick={() => {
+                    navigator.clipboard.writeText(message.content);
+                  }}
                 >
                   <pre className="whitespace-pre-wrap break-words">
                     {message.content}
@@ -160,10 +163,27 @@ export default function Chat() {
             <div ref={messagesEndRef} />
           </div>
           <div className="flex gap-2 p-3 sm:p-4 border-t border-black/10 dark:border-white/10 rounded-b-3xl bg-white/90 dark:bg-black/80 justify-center">
-            <label className="flex items-center justify-center w-full max-w-xs px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-base sm:text-lg shadow-lg hover:bg-black/90 dark:hover:bg-white/90 transition border border-black/10 dark:border-white/10 cursor-pointer">
+            <label
+              tabIndex={0}
+              className="flex items-center justify-center w-full max-w-xs px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-base sm:text-lg shadow-lg hover:bg-black/90 dark:hover:bg-white/90 transition border border-black/10 dark:border-white/10 cursor-pointer"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  fileInputRef.current?.click();
+                }
+              }}
+              onClick={(e) => {
+                // Só abre o input se clicar no ícone ou texto, não ao selecionar/clicar no label vazio
+                if (
+                  (e.target as HTMLElement).tagName === "LABEL" ||
+                  (e.target as HTMLElement).closest("svg")
+                ) {
+                  fileInputRef.current?.click();
+                }
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 mr-2"
+                className="w-5 h-5 mr-2 pointer-events-none"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -183,6 +203,8 @@ export default function Chat() {
                 onChange={handleImageUpload}
                 className="absolute inset-0 opacity-0 cursor-pointer"
                 disabled={loading}
+                tabIndex={-1}
+                style={{ display: "none" }}
               />
             </label>
           </div>
